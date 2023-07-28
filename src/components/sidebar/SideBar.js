@@ -7,9 +7,9 @@ const SideBar = () => {
     return (
         <div className='flex p-5 flex-col justify-between h-screen items-center bg-[#262626]'>
             <div>
-                <div class="relative">
-                    <img class="w-10 h-10 rounded-full" src="https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg" alt="" />
-                    <span class="top-0 left-0 absolute object-contain w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                <div className="relative">
+                    <img className="w-10 h-10 rounded-full" src="https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg" alt="" />
+                    <span className="top-0 left-0 absolute object-contain w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                 </div>
             </div>
             <div>
