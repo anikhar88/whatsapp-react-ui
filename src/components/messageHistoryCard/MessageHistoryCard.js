@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MessageHistoryCard = () => {
+const MessageHistoryCard = ({ name }) => {
     return (
         <div>
 
@@ -14,7 +14,7 @@ const MessageHistoryCard = () => {
                             </div>
                             <div className="flex-1 min-w-0">
                                 <p className="text-md font-bold truncate text-black">
-                                    Neil Sims
+                                    {name && name}
                                 </p>
                                 <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                                     online

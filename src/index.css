@@ -198,6 +198,10 @@
     text-align: right;
 }
 
+.recipient__name {
+    text-align: left;
+}
+
 .message__status {
     position: fixed;
     bottom: 50px;
