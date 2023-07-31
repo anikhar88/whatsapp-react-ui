@@ -1,33 +1,31 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
-
+import messagetune from "../../assets/messagetune.mp3"
 import ChatNavbar from '../chatNavbar/ChatNavbar'
 import SendIcon from '@mui/icons-material/Send';
 import { useRecoilValue } from 'recoil'
 import { userAtom } from '../../recoil/atom/userAtom'
 import { socket } from '../../socketConnection/socketConn';
+const messageAudio = new Audio(messagetune);
 const Chat = () => {
-    const navigate = useNavigate();
     const [messages, setMessage] = useState('');
     const [serMess, setSerMess] = useState([]);
-    const [typingStatus, setTypingStatus] = useState('');
+    // const [typingStatus, setTypingStatus] = useState('');
     const loggenInUser = useRecoilValue(userAtom);
-
     const lastMessageRef = useRef(null);
-    console.log(serMess);
     useEffect(() => {
-        if (Object.keys(loggenInUser).length === 0) {
+        if (Object.keys(loggenInUser).length !== 0) {
 
             socket.on('connect', () => toast.success('connection successfully', { id: "1" }))
             socket.on('connect_error', () => {
                 toast.error("Internet disconnect", { id: "1" })
             });
             socket.on("messageRes", (data) => {
+                console.log(data);
+                messageAudio.play();
                 setSerMess((prev) => [...prev, data]);
             })
-            console.log(loggenInUser);
-            socket.on('typingResponse', (data) => setTypingStatus(data));
+            // socket.on('typingResponse', (data) => setTypingStatus(data));
         }
     }, [loggenInUser])
     useEffect(() => {
@@ -36,7 +34,7 @@ const Chat = () => {
     }, [messages]);
     const handlesendMessage = (e) => {
         e.preventDefault();
-        if (loggenInUser) {
+        if (Object.keys(loggenInUser).length !== 0) {
             socket.emit("message", {
                 text: messages,
                 name: loggenInUser.name
@@ -45,10 +43,10 @@ const Chat = () => {
         setMessage("")
     }
 
-    const handleTyping = () => {
-        console.log('main call ho raha hoon');
-        socket.emit('typing', `${loggenInUser.name} is typing`)
-    };
+    // const handleTyping = () => {
+    //     console.log('main call ho raha hoon');
+    //     socket.emit('typing', `${loggenInUser.name} is typing`)
+    // };
     return (
         <div className='flex flex-col '>
             <Toaster />
@@ -77,9 +75,9 @@ const Chat = () => {
 
 
             </div>
-            <div className="message__status">
+            {/* <div className="message__status">
                 <p>{typingStatus}...</p>
-            </div>
+            </div> */}
             < div className='relative' >
                 {/* input box for chat */}
 
@@ -87,7 +85,7 @@ const Chat = () => {
 
                     <div className="relative">
 
-                        <input value={messages} onKeyUp={(e) => handleTyping(e)} id="default-search" className="block w-full p-2 pl-10 text-sm text-black border mt-3 rounded-full bg-gray-50 outline-none  " placeholder="Send Message..." onChange={(e) => setMessage(e.target.value)} />
+                        <input value={messages} id="default-search" className="block w-full p-2 pl-10 text-sm text-black border mt-3 rounded-full bg-gray-50 outline-none  " placeholder="Send Message..." onChange={(e) => setMessage(e.target.value)} />
                         <button type="submit" className="text-[#44d7b6] absolute right-2.5 bottom-1  font-medium rounded-full text-sm px-2 py-1"><SendIcon /></button>
                     </div>
                 </form >
