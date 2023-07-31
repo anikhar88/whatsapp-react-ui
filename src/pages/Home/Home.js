@@ -18,19 +18,19 @@ const Home = () => {
         }
     }, [loggenInUser, navigate]);
     return (
-        <div className='grid grid-cols-12 h-screen'>
+        <div className='flex w-full h-screen'>
             {/* sidebar */}
-            <div className='col-span-1'>
+            <div className='w-[5%]'>
 
                 <SideBar />
             </div>
             {/* chat history */}
-            <div className='col-span-4 border'>
+            <div className='w-[30%] border-r'>
 
                 <ChatHistory />
             </div>
             {/* chat */}
-            <div className='col-span-7 '>
+            <div className='w-[65%] '>
 
                 <Chat />
             </div>

@@ -12,7 +12,7 @@ const SideBar = () => {
                     <span className="top-0 left-0 absolute object-contain w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <nav className='flex'>
                     <ul className='flex gap-5 text-gray-300 flex-col justify-between items-center'>
                         <li className='cursor-pointer rounded-full hover:text-gray-200 transition-all'><HomeIcon /></li>
@@ -20,7 +20,7 @@ const SideBar = () => {
                         <li className='cursor-pointer rounded-full hover:text-gray-200 transition-all'><MoreHorizIcon /></li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
             <div className='text-gray-300 cursor-pointer'>
                 <SettingsIcon />
             </div>
